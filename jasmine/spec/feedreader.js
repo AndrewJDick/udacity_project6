@@ -124,10 +124,3 @@ $(function () {
          */
     });
 }());
-
-// For
-var i;
-for(i = 0; i < array.length; i++) { }
-
-// ForEach
-array.forEach(function (i) { });
