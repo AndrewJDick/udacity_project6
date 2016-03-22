@@ -66,23 +66,28 @@ $(function () {
 
         /* When the menu is invisible, the menu-hidden class is applied to the <body> tag.
            Therefore, we can test whether or not the menu-hidden class is active on body.
-           The state is defined in isMenuHidden, and we expect it to be true when the page loads (default).
+           The body tag is declared in our body variable, and we expect the class to be applied when the page loads (default).
         */
 
-        var isMenuHidden = $('body').hasClass('menu-hidden');
+        var body = $('body');
 
-        it('Is Menu Hidden?', function() {
-            expect(isMenuHidden).toBe(true);
+        it('Is the menu hidden by default?', function() {
+            expect(body.hasClass('menu-hidden')).toBe(true);
         });
 
 
-        /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
+        /* When the page loads the test will trigger the menuIcon and test if menu-hidden class has been applied to the body tag.
+        *  It will then trigger the menuIcon again to see if the class has been removed.
         */
 
-        
+        var menuIcon = $('.menu-icon-link');
+
+        it('Does the menu show when clicked, then hide when clicked again?', function() {
+            menuIcon.trigger('click');
+            expect(body.hasClass('menu-hidden')).toBe(false);
+            menuIcon.trigger('click');
+            expect(body.hasClass('menu-hidden')).toBe(true);
+        });
     });
 
 
