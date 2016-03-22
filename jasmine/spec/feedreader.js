@@ -76,15 +76,18 @@ $(function () {
         });
 
 
-        /* When the page loads the test will trigger the menuIcon and test if menu-hidden class has been applied to the body tag.
-        *  It will then trigger the menuIcon again to see if the class has been removed.
+        /* When the page loads the test will trigger the menuIcon and test if menu-hidden class has been removed from the the body tag.
+        *  It will then trigger the menuIcon again to see if the class has been re-applied.
         */
 
         var menuIcon = $('.menu-icon-link');
 
         it('Does the menu show when clicked, then hide when clicked again?', function() {
+            // Click the menu icon (class should be removed)
             menuIcon.trigger('click');
             expect(body.hasClass('menu-hidden')).toBe(false);
+
+            // Click the menu icon again (class should be applied)
             menuIcon.trigger('click');
             expect(body.hasClass('menu-hidden')).toBe(true);
         });
