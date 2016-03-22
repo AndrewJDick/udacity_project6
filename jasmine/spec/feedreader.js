@@ -65,8 +65,8 @@ $(function () {
     describe('The menu', function() {
 
         /* When the menu is invisible, the menu-hidden class is applied to the <body> tag.
-           Therefore, we can test whether or not the menu-hidden class is active on body.
-           The body tag is declared in our body variable, and we expect the class to be applied when the page loads (default).
+         * Therefore, we can test whether or not the menu-hidden class is active on body.
+         * The body tag is declared in our body variable, and we expect the class to be applied when the page loads (default).
         */
 
         var body = $('body');
@@ -77,7 +77,7 @@ $(function () {
 
 
         /* When the page loads the test will trigger the menuIcon and test if menu-hidden class has been removed from the the body tag.
-        *  It will then trigger the menuIcon again to see if the class has been re-applied.
+         * It will then trigger the menuIcon again to see if the class has been re-applied.
         */
 
         var menuIcon = $('.menu-icon-link');
@@ -96,12 +96,22 @@ $(function () {
 
     describe('Initial Entries', function() {
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+        beforeEach(function(done) {
+            loadFeed(0, done);
+        });
+
+        /* Search for each article that has been added to the <div class="feed">.
+         * Since the .entry class is added to each article, we can search for each instance of the class inside the feed. 
+         * As long as .entry appears at least once, the test will pass.
+        */
+
+        var feed = $('.feed')
+
+        it('At least one element is inside the feed container', function(done) {
+            var entries = feed.find('.entry');
+            expect(entries.length).toBeGreaterThan(0);
+            done();
+        });
 
     });
 
@@ -114,3 +124,10 @@ $(function () {
          */
     });
 }());
+
+// For
+var i;
+for(i = 0; i < array.length; i++) { }
+
+// ForEach
+array.forEach(function (i) { });
