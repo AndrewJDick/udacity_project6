@@ -139,7 +139,7 @@ $(function () {
             });
         });
 
-        // Compare the first feed with the second, and expect them not to match
+        // Compare the first feed with the second, and expect them not to match.
         it("Is each feed's content unique?", function() {
             expect(newFeed).not.toBe(oldFeed);
         });
