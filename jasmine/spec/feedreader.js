@@ -23,7 +23,7 @@ $(function () {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
+        it('Is the allFeeds variable defined?', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -34,7 +34,7 @@ $(function () {
          * and that the URL is not empty.
          */
 
-        it('Feed URLs', function() {
+        it('Are the Feed URLs defined and not empty?', function() {
             allFeeds.forEach(function (feed) {
                 // Ensure URL is defined
                 expect(feed.url).toBeDefined();
@@ -50,7 +50,7 @@ $(function () {
          * and that the name is not empty.
          */
 
-        it('Feed Names', function() {
+        it('Does each feed have a name?', function() {
             allFeeds.forEach(function (feed) {
                 // Ensure URL is defined
                 expect(feed.name).toBeDefined();
@@ -105,9 +105,9 @@ $(function () {
          * As long as .entry appears at least once, the test will pass.
         */
 
-        var feed = $('.feed')
+        var feed = $('.feed');
 
-        it('At least one element is inside the feed container', function(done) {
+        it('Is at least one element is inside the feed container?', function(done) {
             var entries = feed.find('.entry');
             expect(entries.length).toBeGreaterThan(0);
             done();
@@ -118,9 +118,30 @@ $(function () {
 
     describe('New Feed Selection', function() { 
 
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* This test ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+         * This test loads the first and second feed, and then compares the two.
+        */
+
+        var oldFeed, newFeed;
+
+        beforeEach(function(done) {
+            
+            // Retrieve and store content from the first feed
+            loadFeed(0, function () {
+                oldFeed = $('.entry').html();
+            });
+
+            // Retrieve and store content from the second feed
+            loadFeed(1, function() {
+                newFeed = $('.entry').html(); 
+                done();
+            });
+        });
+
+        // Compare the first feed with the second, and expect them not to match
+        it("Is each feed's content unique?", function() {
+            expect(newFeed).not.toBe(oldFeed);
+        });
     });
 }());
