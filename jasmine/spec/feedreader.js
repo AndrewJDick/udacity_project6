@@ -15,7 +15,7 @@ $(function () {
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
-    describe('RSS Feeds', function() {
+    describe('RSS Feeds', function () {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -23,7 +23,7 @@ $(function () {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('Is the allFeeds variable defined?', function() {
+        it('Is the allFeeds variable defined?', function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -34,7 +34,7 @@ $(function () {
          * and that the URL is not empty.
          */
 
-        it('Are the Feed URLs defined and not empty?', function() {
+        it('Are the Feed URLs defined and not empty?', function () {
             allFeeds.forEach(function (feed) {
                 // Ensure URL is defined
                 expect(feed.url).toBeDefined();
@@ -50,7 +50,7 @@ $(function () {
          * and that the name is not empty.
          */
 
-        it('Does each feed have a name?', function() {
+        it('Does each feed have a name?', function () {
             allFeeds.forEach(function (feed) {
                 // Ensure URL is defined
                 expect(feed.name).toBeDefined();
@@ -62,7 +62,7 @@ $(function () {
     });
 
 
-    describe('The menu', function() {
+    describe('The menu', function () {
 
         /* When the menu is invisible, the menu-hidden class is applied to the <body> tag.
          * Therefore, we can test whether or not the menu-hidden class is active on body.
@@ -71,7 +71,7 @@ $(function () {
 
         var body = $('body');
 
-        it('Is the menu hidden by default?', function() {
+        it('Is the menu hidden by default?', function () {
             expect(body.hasClass('menu-hidden')).toBe(true);
         });
 
@@ -101,7 +101,7 @@ $(function () {
         });
 
         /* Search for each article that has been added to the <div class="feed">.
-         * Since the .entry class is added to each article, we can search for each instance of the class inside the feed. 
+         * Since the .entry class is added to each article, we can search for each instance of the class inside the feed.
          * As long as .entry appears at least once, the test will pass.
         */
 
@@ -116,7 +116,7 @@ $(function () {
     });
 
 
-    describe('New Feed Selection', function() { 
+    describe('New Feed Selection', function () { 
 
         /* This test ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
@@ -126,21 +126,21 @@ $(function () {
         var oldFeed, newFeed;
 
         beforeEach(function(done) {
-            
+
             // Retrieve and store content from the first feed
             loadFeed(0, function () {
                 oldFeed = $('.entry').html();
             });
 
             // Retrieve and store content from the second feed
-            loadFeed(1, function() {
-                newFeed = $('.entry').html(); 
+            loadFeed(1, function () {
+                newFeed = $('.entry').html();
                 done();
             });
         });
 
         // Compare the first feed with the second, and expect them not to match.
-        it("Is each feed's content unique?", function() {
+        it("Is each feed's content unique?", function () {
             expect(newFeed).not.toBe(oldFeed);
         });
     });
