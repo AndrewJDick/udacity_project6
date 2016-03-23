@@ -127,15 +127,15 @@ $(function () {
 
         beforeEach(function(done) {
 
-            // Retrieve and store content from the first feed
             loadFeed(0, function () {
+                // Retrieve and store content from the first feed
                 oldFeed = $('.entry').html();
-            });
-
-            // Retrieve and store content from the second feed
-            loadFeed(1, function () {
-                newFeed = $('.entry').html();
-                done();
+            
+                loadFeed(1, function () {
+                    // Retrieve and store content from the second feed
+                    newFeed = $('.entry').html();
+                    done();
+                });
             });
         });
 
